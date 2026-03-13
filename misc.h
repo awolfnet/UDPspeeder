@@ -71,8 +71,14 @@ int unit_test();
 
 void process_arg(int argc, char *argv[]);
 
-extern char sub_net[100];
-extern u32_t sub_net_uint32;
+//extern char sub_net[100];
+//extern u32_t sub_net_uint32;
 extern char tun_dev[100];
+
+extern char local_address[100];
+extern u32_t local_address_uint32;
+
+extern char remote_address[100];
+extern u32_t remote_address_uint32;
 
 #endif /* MISC_H_ */
