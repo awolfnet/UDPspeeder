@@ -40,8 +40,14 @@ int time_mono_test = 0;
 
 int delay_capacity = 0;
 
-char sub_net[100] = "10.22.22.0";
-u32_t sub_net_uint32 = 0;
+// char sub_net[100] = "10.22.22.0";
+// u32_t sub_net_uint32 = 0;
+
+char local_address[100] = "";
+u32_t local_address_uint32 = 0;
+
+char remote_address[100] = "";
+u32_t remote_address_uint32 = 0;
 
 char tun_dev[100] = "";
 
@@ -574,7 +580,9 @@ void process_arg(int argc, char *argv[]) {
             {"debug-fec-enc", no_argument, 0, 1},
             {"debug-fec-dec", no_argument, 0, 1},
             {"fifo", required_argument, 0, 1},
-            {"sub-net", required_argument, 0, 1},
+            //{"sub-net", required_argument, 0, 1},
+            {"local-address", required_argument, 0, 1},
+            {"remote-address", required_argument, 0, 1},
             {"tun-dev", required_argument, 0, 1},
             {"tun-mtu", required_argument, 0, 1},
             {"mssfix", required_argument, 0, 1},
@@ -825,10 +833,15 @@ void process_arg(int argc, char *argv[]) {
                 } else if (strcmp(long_options[option_index].name, "persist-tun") == 0) {
                     persist_tun = 1;
                     mylog(log_info, "persist_tun enabled\n");
-                } else if (strcmp(long_options[option_index].name, "sub-net") == 0) {
-                    sscanf(optarg, "%s", sub_net);
-                    mylog(log_info, "sub_net %s\n", sub_net);
-
+                // } else if (strcmp(long_options[option_index].name, "sub-net") == 0) {
+                //     sscanf(optarg, "%s", sub_net);
+                //     mylog(log_info, "sub_net %s\n", sub_net);
+                } else if (strcmp(long_options[option_index].name, "local-address") == 0) {
+                    sscanf(optarg, "%s", local_address);
+                    mylog(log_info, "local_address=%s\n", local_address);
+                } else if (strcmp(long_options[option_index].name, "remote-address") == 0) {
+                    sscanf(optarg, "%s", remote_address);
+                    mylog(log_info, "remote_address=%s\n", remote_address);
                 } else if (strcmp(long_options[option_index].name, "tun-dev") == 0) {
                     sscanf(optarg, "%s", tun_dev);
                     mylog(log_info, "tun_dev=%s\n", tun_dev);
